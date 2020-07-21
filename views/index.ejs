@@ -9,11 +9,12 @@
     <div class="container">
         <div class="jumbotron text-center">
             <h2 class="mb-5 mt-5">Please upload your image to extract the text from it</h2>
-            <form>
+            <form action="/" method="POST" enctype="multipart/form-data">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose image</label>
+                    <input name="image" type="file" class="custom-file-input" id="imageFile">
+                    <label class="custom-file-label" for="imageFile">Choose image</label>
                 </div>
+                <button type="submit" class="btn btn-dark btn-lg mt-4">EXTRACT TEXT</button>
             </form>
         </div>
     </div>

@@ -24,6 +24,7 @@ body {
   background-color: #333;
   display: flex;
   align-items: center;
+  font-family:  Arial, Helvetica, sans-serif;
   justify-content: center;
   height: 100vh;
   margin: 0;
@@ -37,9 +38,15 @@ body {
   margin: auto;
 } 
 
-.navbar-nav{
-  font-family: 'Tajawal', sans-serif !important;
+#imageFile:focus{
+  border-width: 0ch;
+  border-color: black;
 }
+.custom-file-label:focus {
+  border-color: black;
+}
+
+
 
 
 
