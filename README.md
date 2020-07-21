@@ -12,7 +12,7 @@ This is Tool build with the help of tesseract.js-node library which is going to 
 
 
 
-### PIP Dependencies
+### Dependencies
 
 Once you have your virtual environment setup and running, install dependencies by running:
 
