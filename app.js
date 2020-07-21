@@ -30,7 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
-  console.log('hey :>> ');
   app.use(morgan('dev'));
 }
 
@@ -57,7 +56,7 @@ app.post('/', async (req, res, next) => {
 
   const worker = await getWorker({
     tessdata: './tessdata',    // where .traineddata-files are located
-    languages: ['eng']         // languages to load
+    languages: ['eng', 'ara']         // languages to load
   });
 
 
@@ -78,7 +77,6 @@ app.post('/', async (req, res, next) => {
 
   const text = await worker.recognize(image.data, 'eng');
 
-  console.log(text);
 
   res.render('res', { text });
 
