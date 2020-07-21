@@ -5,8 +5,10 @@ const morgan = require('morgan');
 const colors = require('colors');
 const errorHandler = require('./middleware/error');
 const fileUpload = require('express-fileupload');
-const ocrad = require('async-ocrad');
-const ErrorResponse = require('./utils/errorResponse')
+const ErrorResponse = require('./utils/errorResponse');
+const getWorker = require('tesseract.js-node');
+
+
 
 
 // Load env vars
@@ -46,19 +48,20 @@ app.set('view engine', 'ejs');
 
 
 
-
-
-
-
-
-
 // Routes
-
 app.get('/', (req, res, next) => {
   res.render('index');
 });
 
 app.post('/', async (req, res, next) => {
+
+  const worker = await getWorker({
+    tessdata: './tessdata',    // where .traineddata-files are located
+    languages: ['eng']         // languages to load
+  });
+
+
+
 
   if (!req.files) {
     return next(
@@ -67,33 +70,14 @@ app.post('/', async (req, res, next) => {
   }
   const image = req.files.image;
 
-  const text = await ocrad(image.data.toString());
-
-  // Move the photo to the public folder
-  file.mv(`${process.env.FILE_UPLOAD_PATH}/${file.name}`, async err => {
-    if (err) {
-      console.log(err);
-      return next(new ErrorResponse(`Problem with file upload`, 500));
-    }
-
-    // Update the bootcamp photo name
-    const updatedBootcamp = await Bootcamp.findByIdAndUpdate(req.params.id, { photo: file.name });
-
-    res.status(200).json({
-      success: true,
-      data: updatedBootcamp
-    });
-  });
-
-  console.log(text);
-
-
   // Check if the file is image
   if (!image.mimetype.startsWith('image')) {
     return next(new ErrorResponse(`Please upload an image`, 400));
   }
 
+  const text = await worker.recognize(image.data, 'eng');
 
+  console.log(text);
 
 
 
