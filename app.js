@@ -68,6 +68,7 @@ app.post('/', async (req, res, next) => {
       new ErrorResponse(`Please upload a file`, 400)
     );
   }
+
   const image = req.files.image;
 
   // Check if the file is image
@@ -78,6 +79,8 @@ app.post('/', async (req, res, next) => {
   const text = await worker.recognize(image.data, 'eng');
 
   console.log(text);
+
+  res.render('res', { text });
 
 
 
