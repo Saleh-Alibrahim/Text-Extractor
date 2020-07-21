@@ -14,10 +14,8 @@ dotenv.config({ path: './config/config.env' });
 const app = express();
 
 // Body parser
-app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-// Cookie parser
-app.use(cookieParser());
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
@@ -27,14 +25,29 @@ if (process.env.NODE_ENV === 'development') {
 // File Upload
 app.use(fileUpload());
 
-
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 
+// View engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
+
+
+
+
+
+
 
 // Routes
+
+app.get('', (req, res, next) => {
+  res.render('index');
+});
+
 app.post('/', async (req, res, next) => {
 
   if (!req.files) {
@@ -62,6 +75,6 @@ const PORT = process.env.PORT || 5000;
 
 const server = app.listen(
   PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  console.log(`Server running in on port ${PORT}`.yellow.bold
   ));
 

@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/stylesheets/main.css">
+<title>Text Extractor</title>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h2 class="mb-5 mt-5">Please upload your image to extract the text from it</h2>
+            <form>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose image</label>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
+    <script src="javascripts/main.js"></script>
