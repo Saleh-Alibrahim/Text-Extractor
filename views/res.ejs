@@ -8,7 +8,12 @@
 
     <div class="container">
         <div class="jumbotron text-center">
-            <h2 class="mb-5 mt-5"><%= text %> </h2>
+            <% if (text.length == 0) { %>
+            <h2 class="mb-5 mt-5">Sorry we can't get any words from this image</h2>
+            <% } else { %>
+            <h2 class="mb-5 mt-5"><%= text %></h2>
+            <% } %>
+            <a type="button" href="/" class="btn btn-dark btn-lg mt-4">TRY AGAIN</a>
         </div>
     </div>
     <%- include('partials/footer') %>
