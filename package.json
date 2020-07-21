@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e * app.js"
+    "start": "node app.js -p",
+    "dev": "nodemon -e * app.js"
+
   },
   "author": "Saleh Alibrahim",
   "license": "MIT",

@@ -15,7 +15,7 @@ const getWorker = require('tesseract.js-node');
 dotenv.config({ path: './config/config.env' });
 
 // Change the environment to prodction
-if (process.argv[2] === '-p') {
+if (process.argv[2] == '-p') {
   process.env.NODE_ENV = 'prodction';
 }
 
@@ -27,10 +27,10 @@ const app = express();
 // Body parser
 app.use(express.urlencoded({ extended: false }));
 
-process.env.NODE_ENV = 'development';
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
+  console.log('hey :>> ');
   app.use(morgan('dev'));
 }
 
