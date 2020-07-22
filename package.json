@@ -6,12 +6,10 @@
   "scripts": {
     "start": "node app.js -p",
     "dev": "nodemon -e * app.js"
-
   },
   "author": "Saleh Alibrahim",
   "license": "MIT",
   "dependencies": {
-    "async-ocrad": "0.0.2",
     "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
